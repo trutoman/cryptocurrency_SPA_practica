@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui;
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    font-size: 16px;
+}
+
+#loader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/*  SPINNER molon from: https://midu.dev/como-crear-un-spinner-con-css/*/
+#spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
+}
+
+#spinner-label {
+    font-weight: 600;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#app {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: azure;
+    border-radius: 8px;
+    box-shadow: 6px 7px 16px 1px rgba(0,0,0,0.66);
+                -webkit-box-shadow: 6px 7px 16px 1px rgba(0,0,0,0.66);
+                -moz-box-shadow: 6px 7px 16px 1px rgba(0,0,0,0.66);
+
+    /* CENTRAR toda la app */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+coins-table {
+    display: none;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* TABLE STYLED from: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
+/* TODO: change active row on row hover */
+
+
+.styled-table {
+    display: none;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.styled-table td.positive {
+    color: green;
+
+}
+
+.styled-table td.negative {
+    color: red;
+
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+
