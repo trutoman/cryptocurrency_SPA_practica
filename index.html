@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Prices</title>
+    <link rel="stylesheet" href="./style.css">
+
+
+</header>
+
+<body>
+
+    <div id="app">
+        <h1>Cryptocurrency Prices</h1>
+        <div id="loader">
+            <div id="spinner"></div>
+            <span id="spinner-label">Loading...</span>
+        </div>
+
+        <main>
+            <div id="filter">
+                <label for="search-input">Filter:</label>
+                <input type="text" id="filter-input"/>
+            </div>
+
+            <table class="styled-table" id="coins-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name-Symbol</th>
+                        <th>Price</th>
+                        <th>% Price Change 24h</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </main>
+
+    </div>
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
