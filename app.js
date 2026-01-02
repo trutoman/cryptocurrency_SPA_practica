@@ -1,4 +1,5 @@
 const MIN_SPINNER_MS = 400;
+let API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
 let coinsData = [];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,6 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
       searchInput.addEventListener(evt, () => filterTable(searchInput.value))
     );
   }
+
+  const reloadButton = document.getElementById('reloadAPI');
+  const coinsNumberInput = document.getElementById('coinsNumber');
+  if (reloadButton && coinsNumberInput) {
+    reloadButton.addEventListener('click', () => handleCoinsNumberChange(coinsNumberInput.value));
+  }
+
 });
 
 document.addEventListener('DOMContentLoaded', async() => {
@@ -19,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 
 async function loadData() {
   try {
-    const resp = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false');
+    const resp = await fetch(API_URL);
     if (!resp.ok) throw new Error('Error HTTP ' + resp.status);
     coinsData = await resp.json();
 
@@ -78,4 +86,24 @@ function filterTable(query) {
     currentCoin.name.toLowerCase().includes(q) || currentCoin.symbol.toLowerCase().includes(q)
   );
   renderTable(filtered);
+}
+
+function handleCoinsNumberChange(value) {
+  const number = parseInt(value);
+
+  // Validar que sea un número válido entre 1 y 250
+  if (isNaN(number) || number < 1 || number > 250) {
+    console.log('Invalid number of coins');
+    return;
+  }
+
+  console.log('Changing number of coins to:', number);
+
+  // Modificar API_URL cambiando el parámetro per_page
+  const url = new URL(API_URL);
+  url.searchParams.set('per_page', number);
+  API_URL = url.toString();
+
+  // Recargar los datos con la nueva URL
+  loadData();
 }
